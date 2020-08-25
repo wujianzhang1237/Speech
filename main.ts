@@ -2,7 +2,7 @@
 Copyright (C): 2010-2019, Shenzhen Yahboom Tech
 modified from wujianzhang
 load dependency
-"Asr": "file:../pxt-Speech"
+"Speech": "file:../pxt-Speech"
 */
 
 //% color="#006400" weight=20 icon="\uf170"
