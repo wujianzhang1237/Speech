@@ -1,7 +1,7 @@
 {
-    "name": "Asr",
+    "name": "Speech",
     "version": "1.0.1",
-    "description": "Extension for YahBoom ASR V1.0.1",
+    "description": "Extension for YahBoom Speech V1.0.1",
     "license": "MIT",
     "dependencies": {
         "core": "*",
@@ -12,9 +12,7 @@
     },
     "files": [
         "README.md",
-        "main.ts",
-        "_locales/zh-cn/Asr-strings.json",
-        "_locales/zh-tw/Asr-strings.json"
+        "main.ts"
     ],
     "testFiles": [
         "test.ts"

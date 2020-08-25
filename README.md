@@ -1,6 +1,6 @@
 # Asr
 
-Extension for Yahboom Asr V1.0
+Extension for Yahboom Speech V1.0
 
 ## License
 
