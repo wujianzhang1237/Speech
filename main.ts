@@ -24,40 +24,43 @@ namespace Speech {
     }
 
 
-   /* function IIC_Writes(date: UInt8LE, size: number): void {
+    function IIC_Writes(date: number[], size: number): void {
 
         for(let i =0;i<size;i++)
         {
-            pins.i2cWriteNumber(I2C_ADDR, date, NumberFormat.UInt8LE, false);
+            pins.i2cWriteNumber(I2C_ADDR, date[i], NumberFormat.UInt8LE, false);
             basic.pause(10);
         }
-    }*/
+    }
 
     //% blockId=Speech_Text block="Speech_Text|EncodingFormat %EncodingFormat|speech_text %speech_text"
     //% weight=99
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
     export function Speech_Text(EncodingFormat: EncodingFormat_Type,speech_text: string): void {
-        let num:UInt16LE = speech_text.length + 2;
-        let total_num = speech_text.length+5;
-        let length_HH:UInt8LE= num >> 8;
-        let length_LL:UInt8LE = num & 0xff;
+        let num = speech_text.length + 2;
+        let total_num = speech_text.length;
+        let length_HH= num >> 8;
+        let length_LL = num & 0xff;
         let commond = 0x01;
 
-        let buf = pins.createBuffer(total_num);
+        let buf = pins.createBuffer(5);
         buf[0] = 0xFD;
         buf[1] = length_HH;
         buf[2] = length_LL;
         buf[3] = commond; 
         buf[4] = EncodingFormat;  
         
+        IIC_Writes(buf,5);
+
         
-        for(let i =5;i<total_num;i++)
+        for(let i =0;i<total_num;i++)
         {
-            buf[i] = speech_text.charCodeAt(i-5);
+             
+            pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt8LE, false);
         }
         
-        pins.i2cWriteBuffer(I2C_ADDR, buf);
+        //pins.i2cWriteBuffer(I2C_ADDR, buf);
         
 
     }
