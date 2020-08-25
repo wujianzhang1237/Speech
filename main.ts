@@ -44,7 +44,7 @@ namespace Speech {
         let length_LL = num & 0xff;
         let commond = 0x01;
 
-        let buf:num[] = [0xFD,length_HH,length_LL,commond,EncodingFormat]; 
+        let buf:number[] = [0xFD,length_HH,length_LL,commond,EncodingFormat]; 
         
         IIC_Writes(buf,5);
 
