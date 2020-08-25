@@ -44,12 +44,7 @@ namespace Speech {
         let length_LL = num & 0xff;
         let commond = 0x01;
 
-        let buf = pins.createBuffer(5);
-        buf[0] = 0xFD;
-        buf[1] = length_HH;
-        buf[2] = length_LL;
-        buf[3] = commond; 
-        buf[4] = EncodingFormat;  
+        let buf:num[] = [0xFD,length_HH,length_LL,commond,EncodingFormat]; 
         
         IIC_Writes(buf,5);
 
