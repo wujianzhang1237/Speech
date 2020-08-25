@@ -9,7 +9,6 @@ load dependency
 namespace Speech {
     const I2C_ADDR = 0x50                   //语音模块地址
 
-     
     
     const DELAY  = 150;//I2C之间延时间隔ms
 
@@ -24,15 +23,25 @@ namespace Speech {
         UNICODE = 0x03
     }
 
+
+   /* function IIC_Writes(date: UInt8LE, size: number): void {
+
+        for(let i =0;i<size;i++)
+        {
+            pins.i2cWriteNumber(I2C_ADDR, date, NumberFormat.UInt8LE, false);
+            basic.pause(10);
+        }
+    }*/
+
     //% blockId=Speech_Text block="Speech_Text|EncodingFormat %EncodingFormat|speech_text %speech_text"
     //% weight=99
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
     export function Speech_Text(EncodingFormat: EncodingFormat_Type,speech_text: string): void {
-        let num = speech_text.length + 2;
+        let num:UInt16LE = speech_text.length + 2;
         let total_num = speech_text.length+5;
-        let length_HH = num >> 8;
-        let length_LL = num & 0x000000ff;
+        let length_HH:UInt8LE= num >> 8;
+        let length_LL:UInt8LE = num & 0xff;
         let commond = 0x01;
 
         let buf = pins.createBuffer(total_num);
@@ -49,7 +58,7 @@ namespace Speech {
         }
         
         pins.i2cWriteBuffer(I2C_ADDR, buf);
-        basic.pause(DELAY);
+        
 
     }
 
