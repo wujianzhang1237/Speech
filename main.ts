@@ -5,7 +5,7 @@ load dependency
 "Speech": "file:../pxt-Speech"
 */
 
-//% color="#006401" weight=20 icon="\uf1ab"
+//% color="#006400" weight=20 icon="\uf0a1"
 namespace Speech {
     const I2C_ADDR = 0x50                   //语音模块地址
 
@@ -52,7 +52,7 @@ namespace Speech {
         for(let i =0;i<total_num;i++)
         {
              
-            pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt8LE, false);
+            pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt16LE, false);
         }
         
         //pins.i2cWriteBuffer(I2C_ADDR, buf);
