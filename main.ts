@@ -5,7 +5,7 @@ load dependency
 "Speech": "file:../pxt-Speech"
 */
 
-//% color="#006400" weight=20 icon="\uf170"
+//% color="#006401" weight=20 icon="\uf1ab"
 namespace Speech {
     const I2C_ADDR = 0x50                   //语音模块地址
 
