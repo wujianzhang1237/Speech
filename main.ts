@@ -76,7 +76,7 @@ namespace Speech {
     //% blockGap=10
     //% color="#006400"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function char_Result(test_char:string,char_num:number): Any { 
+    export function char_Result(test_char:string,char_num:number): any { 
 
         let result = test_char.charAt(char_num)
         return result;
