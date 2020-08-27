@@ -69,7 +69,18 @@ namespace Speech {
 
         let result = test_str.charCodeAt(index_num)
         return result;
-    } 
+    }
+    
+    //% blockId=char_Result block="char_Result|test_str %test_str|index_num %index_num"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function char_Result(test_str:string,index_num:number): Any { 
+
+        let result = test_str.charAt(index_num)
+        return result;
+    }
  
 
 
