@@ -71,14 +71,14 @@ namespace Speech {
         return result;
     }
     
-    //% blockId=char_Result block="char_Result|test_str %test_str|index_num %index_num"
+    //% blockId=char_Result block="char_Result|test_char %test_char|char_num %char_num"
     //% weight=92
     //% blockGap=10
     //% color="#006400"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function char_Result(test_str:string,index_num:number): Any { 
+    export function char_Result(test_char:string,char_num:number): Any { 
 
-        let result = test_str.charAt(index_num)
+        let result = test_char.charAt(char_num)
         return result;
     }
  
