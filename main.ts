@@ -8,7 +8,7 @@ load dependency
 //% color="#006400" weight=20 icon="\uf0a1"
 namespace Speech {
     const I2C_ADDR = 0x50                   //语音模块地址
-
+    const DATA_HEAD = 0xFD                  //帧头
     
     const DELAY  = 150;//I2C之间延时间隔ms
 
@@ -44,20 +44,15 @@ namespace Speech {
         let length_LL = num & 0xff;
         let commond = 0x01;
 
-        let buf:number[] = [0xFD,length_HH,length_LL,commond,EncodingFormat]; 
+        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
         
         IIC_Writes(buf,5);
 
-        
         for(let i =0;i<total_num;i++)
         {
              
-            pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt16LE, false);
-        }
-        
-        //pins.i2cWriteBuffer(I2C_ADDR, buf);
-        
-
+            pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt8LE, false);
+        }          
     }
 
     //% blockId=Unicode_Result block="Unicode_Result|test_str %test_str|index_num %index_num"
@@ -81,16 +76,30 @@ namespace Speech {
         let result = test_char.charAt(char_num)
         return result;
     }
- 
-
-
-
 
     export enum Style_Type{
         //% blockId="Style_Single" block="Style_Single"
         Style_Single = 0,
         //% blockId="Style_Continue" block="Style_Continue"
         Style_Continue = 1
+    }
+
+    //% blockId=SetStyle block="SetStyle|style_type %style_type |EncodingFormat %EncodingFormat"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetStyle(style_type:Style_Type,EncodingFormat: EncodingFormat_Type): void { 
+        
+        if(style_type == 1)
+        {
+            Speech_Text(EncodingFormat,"[f1]");
+        }
+        else
+        {
+            Speech_Text(EncodingFormat,"[f0]");
+        }
+               
     }
 
     export enum Language_Type {
