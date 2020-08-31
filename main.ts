@@ -47,11 +47,9 @@ namespace Speech {
         let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
         
         IIC_Writes(buf,5);
-
-        for(let ch of speech_text)
-        {   
-            pins.i2cWriteNumber(I2C_ADDR,ch.codePointAt(0).toString(16), NumberFormat.UInt16LE, false);
-        }          
+ 
+        pins.i2cWriteNumber(I2C_ADDR,"好".codePointAt(0).toString(16), NumberFormat.UInt16LE, false);
+        
     }
 
     //% blockId=Unicode_Result block="Unicode_Result|test_str %test_str|index_num %index_num"
