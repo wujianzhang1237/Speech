@@ -48,10 +48,9 @@ namespace Speech {
         
         IIC_Writes(buf,5);
 
-        for(let i =0;i<total_num;i++)
-        {
-             
-            pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt8LE, false);
+        for(let ch of speech_text)
+        {   
+            pins.i2cWriteNumber(I2C_ADDR,ch.codePointAt(0).toString(16), NumberFormat.UInt16LE, false);
         }          
     }
 
@@ -84,11 +83,7 @@ namespace Speech {
         Style_Continue = 1
     }
 
-    //% blockId=SetStyle block="SetStyle|style_type %style_type |EncodingFormat %EncodingFormat"
-    //% weight=92
-    //% blockGap=10
-    //% color="#006400"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    /*
     export function SetStyle(style_type:Style_Type,EncodingFormat: EncodingFormat_Type): void { 
         
         if(style_type == 1)
@@ -98,9 +93,8 @@ namespace Speech {
         else
         {
             Speech_Text(EncodingFormat,"[f0]");
-        }
-               
-    }
+        }        
+    }*/
 
     export enum Language_Type {
 
