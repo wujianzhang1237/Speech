@@ -48,10 +48,16 @@ namespace Speech {
         
         IIC_Writes(buf,5);
 
-        for(let ch of speech_text)
+        /*for(let ch of speech_text)
         {   
             pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt8LE, false);
-        }          
+        }*/
+        
+        for(let i = 0;i < total_num;i++)
+        {
+            pins.i2cWriteNumber(I2C_ADDR,speech_text.charAt(i), NumberFormat.UInt8LE, false);  
+        }
+
     }
 
     //% blockId=Unicode_Result block="Unicode_Result|test_str %test_str|index_num %index_num"
