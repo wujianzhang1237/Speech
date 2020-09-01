@@ -50,6 +50,32 @@ namespace Speech {
 
         for(let ch of speech_text)
         {   
+            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt8LE, false);
+        }
+        
+        /*for(let i = 0;i < total_num;i++)
+        {
+            pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt8LE, false);  
+        }*/
+    }
+
+    //% blockId=Speech_CH block="Speech_CH|EncodingFormat %EncodingFormat|speech_text %speech_text"
+    //% weight=99
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
+    export function Speech_CH(EncodingFormat: EncodingFormat_Type,speech_ch: string): void {
+        let num = speech_ch.length + 2;
+        let total_num = speech_ch.length;
+        let length_HH= num >> 8;
+        let length_LL = num & 0xff;
+        let commond = 0x01;
+
+        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
+        
+        IIC_Writes(buf,5);
+
+        for(let ch of speech_ch)
+        {   
             pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
         }
         
@@ -57,7 +83,6 @@ namespace Speech {
         {
             pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt8LE, false);  
         }*/
-
     }
 
 
@@ -283,6 +308,66 @@ namespace Speech {
             SetBase("[o1]");
         }    
     }
+
+    export enum NamePronunciation_Type {
+
+        //% blockId="NamePronunciation_Auto" block="NamePronunciation_Auto"
+        NamePronunciation_Auto = 0,
+        //% blockId="NamePronunciation_Constraint" block="NamePronunciation_Constraint"
+        NamePronunciation_Constraint
+    }
+
+    //% blockId=SetNamePronunciation block="SetNamePronunciation|namepronunciation_type %namepronunciation_type"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetNamePronunciation(namepronunciation_type:NamePronunciation_Type): void { 
+        
+        if(namepronunciation_type == 0)
+        {
+            SetBase("[r0]");
+        }
+        else if(namepronunciation_type == 1)
+        {
+            SetBase("[r1]");
+        }    
+    }
+
+    //% blockId=SetSpeed block="SetSpeed|speed %speed"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetSpeed(speed:number): void { 
+        
+            SetBase("[s"+speed+"]");
+ 
+    }
+
+    //% blockId=SetIntonation block="SetIntonation|intonation %intonation"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetIntonation(intonation:number): void { 
+        
+        SetBase("[t"+intonation+"]");
+
+    }
+
+    //% blockId=SetVolume block="SetVolume|volume %volume"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetVolume(volume:number): void { 
+        
+        SetBase("[v"+volume+"]");
+
+    }
+
+
 
 
     export enum PromptTone_Type {
