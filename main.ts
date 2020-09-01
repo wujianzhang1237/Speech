@@ -50,7 +50,7 @@ namespace Speech {
 
         for(let ch of speech_text)
         {   
-            pins.i2cWriteNumber(I2C_ADDR,codePointAt(ch,0), NumberFormat.UInt16LE, false);
+            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
         }          
     }
 
@@ -83,18 +83,40 @@ namespace Speech {
         Style_Continue = 1
     }
 
-    /*
-    export function SetStyle(style_type:Style_Type,EncodingFormat: EncodingFormat_Type): void { 
+    function SetBase(str:string): void { 
+        let num = str.length + 2;
+        let total_num = str.length;
+        let length_HH= num >> 8;
+        let length_LL = num & 0xff;
+        let commond = 0x01;
+
+        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,0]; 
+        
+        IIC_Writes(buf,5);
+
+        for(let i =0;i<total_num;i++)
+        {
+            pins.i2cWriteNumber(I2C_ADDR,str.charCodeAt(i), NumberFormat.UInt8LE, false);    
+        }
+
+    }
+
+    //% blockId=SetStyle block="SetStyle|style_type %style_type"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetStyle(style_type:Style_Type): void { 
         
         if(style_type == 1)
         {
-            Speech_Text(EncodingFormat,"[f1]");
+            SetBase("[f1]");
         }
         else
         {
-            Speech_Text(EncodingFormat,"[f0]");
+            SetBase("[f0]");
         }        
-    }*/
+    }
 
     export enum Language_Type {
 
