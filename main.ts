@@ -55,32 +55,11 @@ namespace Speech {
         
         for(let i = 0;i < total_num;i++)
         {
-            pins.i2cWriteNumber(I2C_ADDR,speech_text.charAt(i), NumberFormat.UInt8LE, false);  
+            pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt8LE, false);  
         }
 
     }
 
-    //% blockId=Unicode_Result block="Unicode_Result|test_str %test_str|index_num %index_num"
-    //% weight=92
-    //% blockGap=10
-    //% color="#006400"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function Unicode_Result(test_str:string,index_num:number): number { 
-
-        let result = test_str.charCodeAt(index_num)
-        return result;
-    }
-    
-    //% blockId=char_Result block="char_Result|test_char %test_char|char_num %char_num"
-    //% weight=92
-    //% blockGap=10
-    //% color="#006400"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function char_Result(test_char:string,char_num:number): any { 
-
-        let result = test_char.charAt(char_num)
-        return result;
-    }
 
     export enum Style_Type{
         //% blockId="Style_Single" block="Style_Single"
@@ -134,6 +113,28 @@ namespace Speech {
         Language_English
     }
 
+    //% blockId=SetLanguage block="SetLanguage|language_type %language_type"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetLanguage(language_type:Language_Type): void { 
+        
+        if(language_type == 0)
+        {
+            SetBase("[g0]");
+        }
+        else if(language_type == 1)
+        {
+            SetBase("[g1]");
+        }
+        else if(language_type == 2)
+        {
+            SetBase("[g2]");
+        }        
+    }
+
+
     export enum Articulation_Type {
 
         //% blockId="Articulation_Auto" block="Articulation_Auto"
@@ -144,13 +145,54 @@ namespace Speech {
         Articulation_Word
     }
 
-    export enum SetSpell {
+    //% blockId=SetArticulation block="SetArticulation|articulation_type %articulation_type"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetArticulation(articulation_type:Articulation_Type): void { 
+        
+        if(articulation_type == 0)
+        {
+            SetBase("[h0]");
+        }
+        else if(articulation_type == 1)
+        {
+            SetBase("[h1]");
+        }
+        else if(articulation_type == 2)
+        {
+            SetBase("[h2]");
+        }        
+    }
+
+
+    export enum Spell_Type {
 
         //% blockId="Spell_Disable" block="Spell_Disable"
         Spell_Disable = 0,
         //% blockId="Spell_Enable" block="Spell_Enable"
         Spell_Enable
     }
+
+    //% blockId=SetSpell block="SetSpell|spell_type %spell_type"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetSpell(spell_type:Spell_Type): void { 
+        
+        if(spell_type == 0)
+        {
+            SetBase("[i0]");
+        }
+        else if(spell_type == 1)
+        {
+            SetBase("[i1]");
+        }
+        
+    }   
+
 
     export enum Reader_Type {
 
@@ -168,6 +210,24 @@ namespace Speech {
         Reader_XuXiaoBao = 55
     }
 
+    //% blockId=SetReader block="SetReader|reader_type %reader_type"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetReader(reader_type:Reader_Type): void { 
+        
+        if(reader_type == 0)
+        {
+            SetBase("[m0]");
+        }
+        else if(reader_type == 1)
+        {
+            SetBase("[m1]");
+        }
+        
+    }
+
     export enum NumberHandle_Type {
 
         //% blockId="NumberHandle_Auto" block="NumberHandle_Auto"
@@ -178,6 +238,27 @@ namespace Speech {
         NumberHandle_Value
     }
 
+    //% blockId=SetNumberHandle block="SetNumberHandle|numberhandle_type %numberhandle_type"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetNumberHandle(numberhandle_type:NumberHandle_Type): void { 
+        
+        if(numberhandle_type == 0)
+        {
+            SetBase("[n0]");
+        }
+        else if(numberhandle_type == 1)
+        {
+            SetBase("[n1]");
+        }
+        else if(numberhandle_type == 2)
+        {
+            SetBase("[n2]");
+        }     
+    }
+
     export enum ZeroPronunciation_Type {
 
         //% blockId="ZeroPronunciation_Zero" block="ZeroPronunciation_Zero"
@@ -185,6 +266,24 @@ namespace Speech {
         //% blockId="ZeroPronunciation_O" block="ZeroPronunciation_O"
         ZeroPronunciation_O
     }
+
+    //% blockId=SetZeroPronunciation block="SetZeroPronunciation|zeropronunciation_type %zeropronunciation_type"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetZeroPronunciation(zeropronunciation_type:ZeroPronunciation_Type): void { 
+        
+        if(zeropronunciation_type == 0)
+        {
+            SetBase("[o0]");
+        }
+        else if(zeropronunciation_type == 1)
+        {
+            SetBase("[o1]");
+        }    
+    }
+
 
     export enum PromptTone_Type {
 
@@ -194,6 +293,23 @@ namespace Speech {
         PromptTone_Enable
     }
 
+    //% blockId=SetPromptTone block="SetPromptTone|prompttone_type %prompttone_type"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetPromptTone(prompttone_type:PromptTone_Type): void { 
+        
+        if(prompttone_type == 0)
+        {
+            SetBase("[x0]");
+        }
+        else if(prompttone_type == 1)
+        {
+            SetBase("[x1]");
+        }    
+    }
+
     export enum OnePronunciation_Type {
 
         //% blockId="OnePronunciation_Yao" block="OnePronunciation_Yao"
@@ -201,6 +317,24 @@ namespace Speech {
         //% blockId="OnePronunciation_Yi" block="OnePronunciation_Yi"
         OnePronunciation_Yi
     }
+
+    //% blockId=SetOnePronunciation block="SetOnePronunciation|onepronunciation_type %onepronunciation_type"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetOnePronunciation(onepronunciation_type:OnePronunciation_Type): void { 
+        
+        if(onepronunciation_type == 0)
+        {
+            SetBase("[y0]");
+        }
+        else if(onepronunciation_type == 1)
+        {
+            SetBase("[y1]");
+        }    
+    }
+
     
     export enum Rhythm_Type {
 
@@ -208,6 +342,23 @@ namespace Speech {
         Rhythm_Diasble = 0,
         //% blockId="Rhythm_Enable" block="Rhythm_Enable"
         Rhythm_Enable
+    }
+
+    //% blockId=SetRhythm block="SetRhythm|rhythm_type %rhythm_type"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetRhythm(rhythm_type:Rhythm_Type): void { 
+        
+        if(rhythm_type == 0)
+        {
+            SetBase("[z0]");
+        }
+        else if(rhythm_type == 1)
+        {
+            SetBase("[z1]");
+        }    
     }
 
     export enum ConstraintSpell_Type {
