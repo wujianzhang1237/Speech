@@ -50,7 +50,7 @@ namespace Speech {
 
         for(let ch of speech_text)
         {   
-            pins.i2cWriteNumber(I2C_ADDR,speech_text.codePointAt(0), NumberFormat.UInt16LE, false);
+            pins.i2cWriteNumber(I2C_ADDR,codePointAt(ch,0), NumberFormat.UInt16LE, false);
         }          
     }
 
