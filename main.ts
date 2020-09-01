@@ -48,15 +48,15 @@ namespace Speech {
         
         IIC_Writes(buf,5);
 
-        /*for(let ch of speech_text)
+        for(let ch of speech_text)
         {   
             pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt8LE, false);
-        }*/
+        }
         
-        for(let i = 0;i < total_num;i++)
+        /*for(let i = 0;i < total_num;i++)
         {
             pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt8LE, false);  
-        }
+        }*/
 
     }
 
