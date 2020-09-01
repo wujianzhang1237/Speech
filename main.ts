@@ -59,7 +59,7 @@ namespace Speech {
         }*/
     }
 
-    //% blockId=Speech_CH block="Speech_CH|EncodingFormat %EncodingFormat|speech_text %speech_text"
+    //% blockId=Speech_CH block="Speech_CH|EncodingFormat %EncodingFormat|speech_ch %speech_ch"
     //% weight=99
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
@@ -83,6 +83,84 @@ namespace Speech {
         {
             pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt8LE, false);  
         }*/
+    }
+
+    //% blockId=Speech_CH2 block="Speech_CH2|EncodingFormat %EncodingFormat|speech_ch2 %speech_ch2"
+    //% weight=99
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
+    export function Speech_CH2(EncodingFormat: EncodingFormat_Type,speech_ch2: string): void {
+        let num = speech_ch2.length*2 + 2;
+        let total_num = speech_ch2.length*2;
+        let length_HH= num >> 8;
+        let length_LL = num & 0xff;
+        let commond = 0x01;
+
+        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
+        
+        IIC_Writes(buf,5);
+
+        for(let ch of speech_ch2)
+        {   
+            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
+        }
+        
+        /*for(let i = 0;i < total_num;i++)
+        {
+            pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt8LE, false);  
+        }*/
+    }
+
+    //% blockId=Speech_CH3 block="Speech_CH3|EncodingFormat %EncodingFormat|speech_ch3 %speech_ch3"
+    //% weight=99
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
+    export function Speech_CH3(EncodingFormat: EncodingFormat_Type,speech_ch3: string): void {
+        let num = speech_ch3.length*2 + 2;
+        let total_num = speech_ch3.length*2;
+        let length_HH= num >> 8;
+        let length_LL = num & 0xff;
+        let commond = 0x01;
+
+        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
+        
+        IIC_Writes(buf,5);
+
+        /*for(let ch of speech_ch3)
+        {   
+            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
+        }*/
+        
+        for(let i = 0;i < total_num;i++)
+        {
+            pins.i2cWriteNumber(I2C_ADDR,speech_ch3.charCodeAt(i), NumberFormat.UInt8LE, false);  
+        }
+    }
+
+    //% blockId=Speech_CH4 block="Speech_CH4|EncodingFormat %EncodingFormat|speech_ch4 %speech_ch4"
+    //% weight=99
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
+    export function Speech_CH4(EncodingFormat: EncodingFormat_Type,speech_ch4: string): void {
+        let num = speech_ch4.length*2 + 2;
+        let total_num = speech_ch4.length*2;
+        let length_HH= num >> 8;
+        let length_LL = num & 0xff;
+        let commond = 0x01;
+
+        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
+        
+        IIC_Writes(buf,5);
+
+        /*for(let ch of speech_ch3)
+        {   
+            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
+        }*/
+        
+        for(let i = 0;i < total_num;i++)
+        {
+            pins.i2cWriteNumber(I2C_ADDR,speech_ch4.charCodeAt(i), NumberFormat.UInt16LE, false);  
+        }
     }
 
 
