@@ -126,15 +126,15 @@ namespace Speech {
         
         IIC_Writes(buf,5);
 
-        /*for(let ch of speech_ch3)
+        for(let ch of speech_ch3)
         {   
-            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
-        }*/
+            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(1), NumberFormat.UInt16LE, false);
+        }
         
-        for(let i = 0;i < total_num;i++)
+        /*for(let i = 0;i < total_num;i++)
         {
             pins.i2cWriteNumber(I2C_ADDR,speech_ch3.charCodeAt(i), NumberFormat.UInt8LE, false);  
-        }
+        }*/
     }
 
     //% blockId=Speech_CH4 block="Speech_CH4|EncodingFormat %EncodingFormat|speech_ch4 %speech_ch4"
