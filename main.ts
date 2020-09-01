@@ -242,13 +242,29 @@ namespace Speech {
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function SetReader(reader_type:Reader_Type): void { 
         
-        if(reader_type == 0)
+        if(reader_type == 3)
         {
-            SetBase("[m0]");
+            SetBase("[m3]");
         }
-        else if(reader_type == 1)
+        else if(reader_type == 51)
         {
-            SetBase("[m1]");
+            SetBase("[m51]");
+        }
+        else if(reader_type == 52)
+        {
+            SetBase("[m52]");
+        }
+        else if(reader_type == 53)
+        {
+            SetBase("[m53]");
+        }
+        else if(reader_type == 54)
+        {
+            SetBase("[m54]");
+        }
+        else if(reader_type == 55)
+        {
+            SetBase("[m55]");
         }
         
     }
