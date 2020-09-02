@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 Copyright (C): 2010-2019, Shenzhen Yahboom Tech
 modified from wujianzhang
 load dependency
@@ -7,10 +7,10 @@ load dependency
 
 //% color="#006400" weight=20 icon="\uf0a1"
 namespace Speech {
-    const I2C_ADDR = 0x50                   //ÓïÒôÄ£¿éµØÖ·
-    const DATA_HEAD = 0xFD                  //Ö¡Í·
+    const I2C_ADDR = 0x50                   //è¯­éŸ³æ¨¡å—åœ°å€
+    const DATA_HEAD = 0xFD                  //å¸§å¤´
     
-    const DELAY  = 150;//I2CÖ®¼äÑÓÊ±¼ä¸ôms
+    const DELAY  = 150;//I2Cä¹‹é—´å»¶æ—¶é—´éš”ms
 
     export enum EncodingFormat_Type{
         //% blockId="GB2312" block="GB2312"
@@ -168,8 +168,8 @@ namespace Speech {
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
     export function Speech_CH5(EncodingFormat: EncodingFormat_Type): void {
-        let num = "ÄãºÃ".length + 2;
-        let total_num = "ÄãºÃ".length;
+        let num = "ä½ å¥½".length + 2;
+        let total_num = "ä½ å¥½".length;
         let length_HH= num >> 8;
         let length_LL = num & 0xff;
         let commond = 0x01;
@@ -185,7 +185,7 @@ namespace Speech {
         
         for(let i = 0;i < total_num;i++)
         {
-            pins.i2cWriteNumber(I2C_ADDR,"ÄãºÃ".charCodeAt(i), NumberFormat.UInt8LE, false);  
+            pins.i2cWriteNumber(I2C_ADDR,"ä½ å¥½".charCodeAt(i), NumberFormat.UInt8LE, false);  
         }
     }
 
@@ -194,8 +194,8 @@ namespace Speech {
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
     export function Speech_CH6(EncodingFormat: EncodingFormat_Type): void {
-        let num = "ÄãºÃ".length + 2;
-        let total_num = "ÄãºÃ".length;
+        let num = "ä½ å¥½".length + 2;
+        let total_num = "ä½ å¥½".length;
         let length_HH= num >> 8;
         let length_LL = num & 0xff;
         let commond = 0x01;
@@ -204,14 +204,14 @@ namespace Speech {
         
         IIC_Writes(buf,5);
 
-        for(let ch of "ÄãºÃ")
+        for(let ch of "ä½ å¥½")
         {   
             pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
         }
         
         /*for(let i = 0;i < total_num;i++)
         {
-            pins.i2cWriteNumber(I2C_ADDR,"ÄãºÃ".charCodeAt(i), NumberFormat.UInt8LE, false);  
+            pins.i2cWriteNumber(I2C_ADDR,"ä½ å¥½".charCodeAt(i), NumberFormat.UInt8LE, false);  
         }*/
     }
 
@@ -592,18 +592,15 @@ namespace Speech {
         }    
     }
 
-    export enum ConstraintSpell_Type {
-        //% blockId="ConstraintSpell_YinPing" block="ConstraintSpell_YinPing"
-        ConstraintSpell_YinPing = 0,
-        //% blockId="ConstraintSpell_YangPing" block="ConstraintSpell_YangPing"
-        ConstraintSpell_YangPing,
-        //% blockId="ConstraintSpell_ShangSheng" block="ConstraintSpell_ShangSheng"
-        ConstraintSpell_ShangSheng,
-        //% blockId="ConstraintSpell_QuSheng" block="ConstraintSpell_QuSheng"
-        ConstraintSpell_QuSheng,
-        //% blockId="ConstraintSpell_QingSheng" block="ConstraintSpell_QingSheng"
-        ConstraintSpell_QingSheng
-    } 
-
+    //% blockId=SetRestoreDefault block="SetRestoreDefault"
+    //% weight=92
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function SetRestoreDefault(): void { 
+        
+            SetBase("[d]");
+   
+    }
  
 }
