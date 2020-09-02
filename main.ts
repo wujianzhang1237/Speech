@@ -128,7 +128,7 @@ namespace Speech {
 
         for(let ch of speech_ch3)
         {   
-            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(1), NumberFormat.UInt16LE, false);
+            pins.i2cWriteNumber(I2C_ADDR,ch.codePointAt(0), NumberFormat.UInt16LE, false);
         }
         
         /*for(let i = 0;i < total_num;i++)
@@ -161,6 +161,58 @@ namespace Speech {
         {
             pins.i2cWriteNumber(I2C_ADDR,speech_ch4.charCodeAt(i), NumberFormat.UInt16LE, false);  
         }
+    }
+
+    //% blockId=Speech_CH5 block="Speech_CH5|EncodingFormat %EncodingFormat"
+    //% weight=99
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
+    export function Speech_CH5(EncodingFormat: EncodingFormat_Type): void {
+        let num = "你好".length + 2;
+        let total_num = "你好".length;
+        let length_HH= num >> 8;
+        let length_LL = num & 0xff;
+        let commond = 0x01;
+
+        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
+        
+        IIC_Writes(buf,5);
+
+        /*for(let ch of speech_ch3)
+        {   
+            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
+        }*/
+        
+        for(let i = 0;i < total_num;i++)
+        {
+            pins.i2cWriteNumber(I2C_ADDR,"你好".charCodeAt(i), NumberFormat.UInt8LE, false);  
+        }
+    }
+
+    //% blockId=Speech_CH6 block="Speech_CH6|EncodingFormat %EncodingFormat"
+    //% weight=99
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
+    export function Speech_CH6(EncodingFormat: EncodingFormat_Type): void {
+        let num = "你好".length + 2;
+        let total_num = "你好".length;
+        let length_HH= num >> 8;
+        let length_LL = num & 0xff;
+        let commond = 0x01;
+
+        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
+        
+        IIC_Writes(buf,5);
+
+        for(let ch of "你好")
+        {   
+            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
+        }
+        
+        /*for(let i = 0;i < total_num;i++)
+        {
+            pins.i2cWriteNumber(I2C_ADDR,"你好".charCodeAt(i), NumberFormat.UInt8LE, false);  
+        }*/
     }
 
 
