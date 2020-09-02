@@ -128,7 +128,7 @@ namespace Speech {
 
         for(let ch of speech_ch3)
         {   
-            pins.i2cWriteNumber(I2C_ADDR,ch.codePointAt(0), NumberFormat.UInt16LE, false);
+            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
         }
         
         /*for(let i = 0;i < total_num;i++)
