@@ -55,6 +55,7 @@
   "Speech.Rhythm_Type.Rhythm_Enable|block": "处理成韵律，*用于断词，#用于停顿",
   "Speech.SetRhythm|block": "是否使用韵律|策略为 %rhythm_type",
   
-  "Speech.SetRestoreDefault|block": "恢复默认的合成参数所有设置（除发音人设置、语种设置外）恢复为默认值"
+  "Speech.SetRestoreDefault|block": "恢复默认的合成参数所有设置（除发音人设置、语种设置外）恢复为默认值",
 
+  "Speech.GetChipStatus|block": "获取芯片状态值",
 }

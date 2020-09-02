@@ -59,6 +59,9 @@ namespace Speech {
         }*/
     }
 
+
+
+
     //% blockId=Speech_CH block="Speech_CH|EncodingFormat %EncodingFormat|speech_ch %speech_ch"
     //% weight=99
     //% blockGap=10
@@ -602,5 +605,22 @@ namespace Speech {
             SetBase("[d]");
    
     }
+
+    //% blockId=GetChipStatus block="GetChipStatus"
+    //% weight=99
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
+    export function GetChipStatus(): number {
+        let AskState:number[] = [DATA_HEAD,0x00,0x01,0x21]; 
+        
+        IIC_Writes(AskState,4);
+
+        basic.pause(100);
+
+        let result = pins.i2cReadNumber(I2C_ADDR,NumberFormat.UInt8LE, false);
+        return result;
+        
+    }
+
  
 }
