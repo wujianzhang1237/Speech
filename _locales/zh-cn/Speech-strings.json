@@ -48,8 +48,8 @@
   "Speech.SetPromptTone|block": "设置提示音处理策略|策略为 %prompttone_type",
   
   "Speech.OnePronunciation_Type.OnePronunciation_Yao|block": "合成号码1时读成幺",
-  "Speech.OnePronunciation_Type.OnePronunciation_Yi|block": "使用提示音",
-  "Speech.SetOnePronunciation|block": "设置提示音处理策略|策略为 %onepronunciation_type",
+  "Speech.OnePronunciation_Type.OnePronunciation_Yi|block": "合成号码1时读成一",
+  "Speech.SetOnePronunciation|block": "设置号码中1的读法|策略为 %onepronunciation_type",
 
   "Speech.Rhythm_Type.Rhythm_Diasble|block": "*和#读出符号",
   "Speech.Rhythm_Type.Rhythm_Enable|block": "处理成韵律，*用于断词，#用于停顿",
