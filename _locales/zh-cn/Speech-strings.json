@@ -1,6 +1,6 @@
 {
 
-  "Speech.Speech_Text|block": "语音播报文本|编码格式 %EncodingFormat |文本为 %speech_text",
+  "Speech.Speech_Text|block": "语音播报文本|文本为 %speech_text",
   
   "Speech.ChipStatus_Type.ChipStatus_InitSuccessful|block": "初始化成功回传",
   "Speech.ChipStatus_Type.ChipStatus_CorrectCommand|block": "收到正确的命令帧回传",

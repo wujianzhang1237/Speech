@@ -32,18 +32,18 @@ namespace Speech {
         }
     }
 
-    //% blockId=Speech_Text block="Speech_Text|EncodingFormat %EncodingFormat|speech_text %speech_text"
+    //% blockId=Speech_Text block="Speech_Text|speech_text %speech_text"
     //% weight=99
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
-    export function Speech_Text(EncodingFormat: EncodingFormat_Type,speech_text: string): void {
+    export function Speech_Text(speech_text: string): void {
         let num = speech_text.length + 2;
         let total_num = speech_text.length;
         let length_HH= num >> 8;
         let length_LL = num & 0xff;
         let commond = 0x01;
 
-        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
+        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,0x00]; 
         
         IIC_Writes(buf,5);
 
