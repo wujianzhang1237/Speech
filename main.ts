@@ -507,7 +507,7 @@ namespace Speech {
     }
 
 
-    //% blockId=GetChipStatus block="GetChipStatus"
+    //% blockId=Wait_XFS_Status block="Wait_XFS_Status"
     //% weight=99
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
