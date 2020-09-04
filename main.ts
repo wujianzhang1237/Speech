@@ -451,39 +451,6 @@ namespace Speech {
         }
     }
 
-
-
-
-    export enum PromptTone_Type {
-
-        //% blockId="PromptTone_Disable" block="PromptTone_Disable"
-        PromptTone_Disable = 0,
-        //% blockId="PromptTone_Enable" block="PromptTone_Enable"
-        PromptTone_Enable
-    }
-
-    //% blockId=SetPromptTone block="SetPromptTone|prompttone_type %prompttone_type"
-    //% weight=92
-    //% blockGap=10
-    //% color="#006400"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function SetPromptTone(prompttone_type:PromptTone_Type): void { 
-        
-        if(prompttone_type == 0)
-        {
-            SetBase("[x0]");
-        }
-        else if(prompttone_type == 1)
-        {
-            SetBase("[x1]");
-        }
-        
-        while(GetChipStatus() !=  0x4F)
-        {
-            basic.pause(50);
-        }
-    }
-
     export enum OnePronunciation_Type {
 
         //% blockId="OnePronunciation_Yao" block="OnePronunciation_Yao"

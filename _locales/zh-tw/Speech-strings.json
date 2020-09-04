@@ -52,10 +52,6 @@
   "Speech.SetSpeed|block": "设置语速(0-10)|为 %speed", 
   "Speech.SetIntonation|block": "设置语调(0-10)|为 %intonation",   
   "Speech.SetVolume|block": "设置音量(0-10)|为 %volume",
-
-  "Speech.PromptTone_Type.PromptTone_Disable|block": "不使用提示音",
-  "Speech.PromptTone_Type.PromptTone_Enable|block": "使用提示音",
-  "Speech.SetPromptTone|block": "设置提示音处理策略|策略为 %prompttone_type",
   
   "Speech.OnePronunciation_Type.OnePronunciation_Yao|block": "合成号码1时读成幺",
   "Speech.OnePronunciation_Type.OnePronunciation_Yi|block": "合成号码1时读成一",
