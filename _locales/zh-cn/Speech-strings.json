@@ -57,5 +57,5 @@
   
   "Speech.SetRestoreDefault|block": "恢复默认的合成参数所有设置（除发音人设置、语种设置外）恢复为默认值",
 
-  "Speech.GetChipStatus|block": "获取芯片状态值",
+  "Speech.GetChipStatus|block": "获取芯片状态值"
 }
