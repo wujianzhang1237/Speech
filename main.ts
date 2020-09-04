@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (C): 2010-2019, Shenzhen Yahboom Tech
 modified from wujianzhang
 load dependency
@@ -7,10 +7,9 @@ load dependency
 
 //% color="#006400" weight=20 icon="\uf0a1"
 namespace Speech {
-    const I2C_ADDR = 0x50                   //?????????
-    const DATA_HEAD = 0xFD                  //??
+    const I2C_ADDR = 0x50                   //模块地址
+    const DATA_HEAD = 0xFD                  //帧头
     
-    const DELAY  = 150;//I2C?????????ms
 
     export enum EncodingFormat_Type{
         //% blockId="GB2312" block="GB2312"
@@ -85,136 +84,6 @@ namespace Speech {
         /*for(let i = 0;i < total_num;i++)
         {
             pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt8LE, false);  
-        }*/
-    }
-
-    //% blockId=Speech_CH2 block="Speech_CH2|EncodingFormat %EncodingFormat|speech_ch2 %speech_ch2"
-    //% weight=99
-    //% blockGap=10
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
-    export function Speech_CH2(EncodingFormat: EncodingFormat_Type,speech_ch2: string): void {
-        let num = speech_ch2.length*2 + 2;
-        let total_num = speech_ch2.length*2;
-        let length_HH= num >> 8;
-        let length_LL = num & 0xff;
-        let commond = 0x01;
-
-        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
-        
-        IIC_Writes(buf,5);
-
-        for(let ch of speech_ch2)
-        {   
-            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
-        }
-        
-        /*for(let i = 0;i < total_num;i++)
-        {
-            pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt8LE, false);  
-        }*/
-    }
-
-    //% blockId=Speech_CH3 block="Speech_CH3|EncodingFormat %EncodingFormat|speech_ch3 %speech_ch3"
-    //% weight=99
-    //% blockGap=10
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function Speech_CH3(EncodingFormat: EncodingFormat_Type,speech_ch3: string): void {
-        let num = speech_ch3.length*2 + 2;
-        let total_num = speech_ch3.length*2;
-        let length_HH= num >> 8;
-        let length_LL = num & 0xff;
-        let commond = 0x01;
-
-        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
-        
-        IIC_Writes(buf,5);
-
-        for(let ch of speech_ch3)
-        {   
-            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
-        }
-        
-        /*for(let i = 0;i < total_num;i++)
-        {
-            pins.i2cWriteNumber(I2C_ADDR,speech_ch3.charCodeAt(i), NumberFormat.UInt8LE, false);  
-        }*/
-    }
-
-    //% blockId=Speech_CH4 block="Speech_CH4|EncodingFormat %EncodingFormat|speech_ch4 %speech_ch4"
-    //% weight=99
-    //% blockGap=10
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function Speech_CH4(EncodingFormat: EncodingFormat_Type,speech_ch4: string): void {
-        let num = speech_ch4.length*2 + 2;
-        let total_num = speech_ch4.length*2;
-        let length_HH= num >> 8;
-        let length_LL = num & 0xff;
-        let commond = 0x01;
-
-        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
-        
-        IIC_Writes(buf,5);
-
-        /*for(let ch of speech_ch3)
-        {   
-            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
-        }*/
-        
-        for(let i = 0;i < total_num;i++)
-        {
-            pins.i2cWriteNumber(I2C_ADDR,speech_ch4.charCodeAt(i), NumberFormat.UInt16LE, false);  
-        }
-    }
-
-    //% blockId=Speech_CH5 block="Speech_CH5|EncodingFormat %EncodingFormat"
-    //% weight=99
-    //% blockGap=10
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function Speech_CH5(EncodingFormat: EncodingFormat_Type): void {
-        let num = "???".length + 2;
-        let total_num = "???".length;
-        let length_HH= num >> 8;
-        let length_LL = num & 0xff;
-        let commond = 0x01;
-
-        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
-        
-        IIC_Writes(buf,5);
-
-        /*for(let ch of speech_ch3)
-        {   
-            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
-        }*/
-        
-        for(let i = 0;i < total_num;i++)
-        {
-            pins.i2cWriteNumber(I2C_ADDR,"???".charCodeAt(i), NumberFormat.UInt8LE, false);  
-        }
-    }
-
-    //% blockId=Speech_CH6 block="Speech_CH6|EncodingFormat %EncodingFormat"
-    //% weight=99
-    //% blockGap=10
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function Speech_CH6(EncodingFormat: EncodingFormat_Type): void {
-        let num = "???".length + 2;
-        let total_num = "???".length;
-        let length_HH= num >> 8;
-        let length_LL = num & 0xff;
-        let commond = 0x01;
-
-        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
-        
-        IIC_Writes(buf,5);
-
-        for(let ch of "???")
-        {   
-            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
-        }
-        
-        /*for(let i = 0;i < total_num;i++)
-        {
-            pins.i2cWriteNumber(I2C_ADDR,"???".charCodeAt(i), NumberFormat.UInt8LE, false);  
         }*/
     }
 
@@ -606,6 +475,21 @@ namespace Speech {
    
     }
 
+
+    export enum ChipStatus_Type {
+
+        //% blockId="ChipStatus_InitSuccessful" block="ChipStatus_InitSuccessful"
+        ChipStatus_InitSuccessful = 0x4A,
+        //% blockId="ChipStatus_CorrectCommand" block="ChipStatus_CorrectCommand"
+        ChipStatus_CorrectCommand = 0x41,
+        //% blockId="ChipStatus_ErrorCommand" block="ChipStatus_ErrorCommand"
+        ChipStatus_ErrorCommand = 0x45,
+        //% blockId="ChipStatus_Busy" block="ChipStatus_Busy"
+        ChipStatus_Busy = 0x4E,
+        //% blockId="ChipStatus_Idle" block="ChipStatus_Idle"
+        ChipStatus_Busy = 0x4F
+    }
+
     //% blockId=GetChipStatus block="GetChipStatus"
     //% weight=99
     //% blockGap=10
@@ -619,6 +503,22 @@ namespace Speech {
 
         let result = pins.i2cReadNumber(I2C_ADDR,NumberFormat.UInt8LE, false);
         return result;
+        
+    }
+
+
+    //% blockId=GetChipStatus block="GetChipStatus"
+    //% weight=99
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
+    export function Wait_XFS_Status(status:ChipStatus_Type): void {
+        let result = 0xff;
+        while(result !=  status)
+        {
+            result = GetChipStatus();
+            serial.writeNumber(result)
+            basic.pause(50);
+        }
         
     }
 
