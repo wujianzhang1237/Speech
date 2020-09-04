@@ -7,10 +7,10 @@ load dependency
 
 //% color="#006400" weight=20 icon="\uf0a1"
 namespace Speech {
-    const I2C_ADDR = 0x50                   //语音模块地址
-    const DATA_HEAD = 0xFD                  //帧头
+    const I2C_ADDR = 0x50                   //?????????
+    const DATA_HEAD = 0xFD                  //??
     
-    const DELAY  = 150;//I2C之间延时间隔ms
+    const DELAY  = 150;//I2C?????????ms
 
     export enum EncodingFormat_Type{
         //% blockId="GB2312" block="GB2312"
@@ -214,7 +214,7 @@ namespace Speech {
         
         /*for(let i = 0;i < total_num;i++)
         {
-            pins.i2cWriteNumber(I2C_ADDR,"你好".charCodeAt(i), NumberFormat.UInt8LE, false);  
+            pins.i2cWriteNumber(I2C_ADDR,"???".charCodeAt(i), NumberFormat.UInt8LE, false);  
         }*/
     }
 
