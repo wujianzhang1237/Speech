@@ -60,32 +60,49 @@ namespace Speech {
 
 
 
+    export enum ChipStatus_Type {
 
-    //% blockId=Speech_CH block="Speech_CH|EncodingFormat %EncodingFormat|speech_ch %speech_ch"
+        //% blockId="ChipStatus_InitSuccessful" block="ChipStatus_InitSuccessful"
+        ChipStatus_InitSuccessful = 0x4A,
+        //% blockId="ChipStatus_CorrectCommand" block="ChipStatus_CorrectCommand"
+        ChipStatus_CorrectCommand = 0x41,
+        //% blockId="ChipStatus_ErrorCommand" block="ChipStatus_ErrorCommand"
+        ChipStatus_ErrorCommand = 0x45,
+        //% blockId="ChipStatus_Busy" block="ChipStatus_Busy"
+        ChipStatus_Busy = 0x4E,
+        //% blockId="ChipStatus_Idle" block="ChipStatus_Idle"
+        ChipStatus_Idle = 0x4F
+    }
+
+    //% blockId=GetChipStatus block="GetChipStatus"
     //% weight=99
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
-    export function Speech_CH(EncodingFormat: EncodingFormat_Type,speech_ch: string): void {
-        let num = speech_ch.length + 2;
-        let total_num = speech_ch.length;
-        let length_HH= num >> 8;
-        let length_LL = num & 0xff;
-        let commond = 0x01;
-
-        let buf:number[] = [DATA_HEAD,length_HH,length_LL,commond,EncodingFormat]; 
+    export function GetChipStatus(): number {
+        let AskState:number[] = [DATA_HEAD,0x00,0x01,0x21]; 
         
-        IIC_Writes(buf,5);
+        IIC_Writes(AskState,4);
 
-        for(let ch of speech_ch)
-        {   
-            pins.i2cWriteNumber(I2C_ADDR,ch.charCodeAt(0), NumberFormat.UInt16LE, false);
+        basic.pause(100);
+
+        let result = pins.i2cReadNumber(I2C_ADDR,NumberFormat.UInt8LE, false);
+        return result;
+        
+    }
+
+
+    //% blockId=Wait_XFS_Status block="Wait_XFS_Status|status %status"
+    //% weight=99
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
+    export function Wait_XFS_Status(status:ChipStatus_Type): void {
+        while(GetChipStatus() !=  status)
+        {
+            basic.pause(50);
         }
         
-        /*for(let i = 0;i < total_num;i++)
-        {
-            pins.i2cWriteNumber(I2C_ADDR,speech_text.charCodeAt(i), NumberFormat.UInt8LE, false);  
-        }*/
     }
+
 
 
     export enum Style_Type{
@@ -127,7 +144,12 @@ namespace Speech {
         else
         {
             SetBase("[f0]");
-        }        
+        }
+        
+        while(GetChipStatus() !=  0x4F)
+        {
+            basic.pause(50);
+        }
     }
 
     export enum Language_Type {
@@ -158,7 +180,12 @@ namespace Speech {
         else if(language_type == 2)
         {
             SetBase("[g2]");
-        }        
+        }
+        
+        while(GetChipStatus() !=  0x4F)
+        {
+            basic.pause(50);
+        }
     }
 
 
@@ -190,7 +217,12 @@ namespace Speech {
         else if(articulation_type == 2)
         {
             SetBase("[h2]");
-        }        
+        }
+        
+        while(GetChipStatus() !=  0x4F)
+        {
+            basic.pause(50);
+        }
     }
 
 
@@ -216,6 +248,11 @@ namespace Speech {
         else if(spell_type == 1)
         {
             SetBase("[i1]");
+        }
+
+        while(GetChipStatus() !=  0x4F)
+        {
+            basic.pause(50);
         }
         
     }   
@@ -268,6 +305,11 @@ namespace Speech {
         {
             SetBase("[m55]");
         }
+
+        while(GetChipStatus() !=  0x4F)
+        {
+            basic.pause(50);
+        }
         
     }
 
@@ -299,7 +341,12 @@ namespace Speech {
         else if(numberhandle_type == 2)
         {
             SetBase("[n2]");
-        }     
+        }
+        
+        while(GetChipStatus() !=  0x4F)
+        {
+            basic.pause(50);
+        }
     }
 
     export enum ZeroPronunciation_Type {
@@ -324,7 +371,12 @@ namespace Speech {
         else if(zeropronunciation_type == 1)
         {
             SetBase("[o1]");
-        }    
+        }
+        
+        while(GetChipStatus() !=  0x4F)
+        {
+            basic.pause(50);
+        }
     }
 
     export enum NamePronunciation_Type {
@@ -349,6 +401,11 @@ namespace Speech {
         else if(namepronunciation_type == 1)
         {
             SetBase("[r1]");
+        }
+
+        while(GetChipStatus() !=  0x4F)
+        {
+            basic.pause(50);
         }    
     }
 
@@ -360,7 +417,10 @@ namespace Speech {
     export function SetSpeed(speed:number): void { 
         
             SetBase("[s"+speed+"]");
- 
+            while(GetChipStatus() !=  0x4F)
+            {
+                basic.pause(50);
+            }
     }
 
     //% blockId=SetIntonation block="SetIntonation|intonation %intonation"
@@ -371,7 +431,10 @@ namespace Speech {
     export function SetIntonation(intonation:number): void { 
         
         SetBase("[t"+intonation+"]");
-
+        while(GetChipStatus() !=  0x4F)
+        {
+            basic.pause(50);
+        }
     }
 
     //% blockId=SetVolume block="SetVolume|volume %volume"
@@ -382,7 +445,10 @@ namespace Speech {
     export function SetVolume(volume:number): void { 
         
         SetBase("[v"+volume+"]");
-
+        while(GetChipStatus() !=  0x4F)
+        {
+            basic.pause(50);
+        }
     }
 
 
@@ -410,7 +476,12 @@ namespace Speech {
         else if(prompttone_type == 1)
         {
             SetBase("[x1]");
-        }    
+        }
+        
+        while(GetChipStatus() !=  0x4F)
+        {
+            basic.pause(50);
+        }
     }
 
     export enum OnePronunciation_Type {
@@ -435,6 +506,11 @@ namespace Speech {
         else if(onepronunciation_type == 1)
         {
             SetBase("[y1]");
+        }
+
+        while(GetChipStatus() !=  0x4F)
+        {
+            basic.pause(50);
         }    
     }
 
@@ -461,6 +537,10 @@ namespace Speech {
         else if(rhythm_type == 1)
         {
             SetBase("[z1]");
+        }
+        while(GetChipStatus() !=  0x4F)
+        {
+            basic.pause(50);
         }    
     }
 
@@ -472,55 +552,13 @@ namespace Speech {
     export function SetRestoreDefault(): void { 
         
             SetBase("[d]");
+            while(GetChipStatus() !=  0x4F)
+            {
+                basic.pause(50);
+            }
    
     }
 
-
-    export enum ChipStatus_Type {
-
-        //% blockId="ChipStatus_InitSuccessful" block="ChipStatus_InitSuccessful"
-        ChipStatus_InitSuccessful = 0x4A,
-        //% blockId="ChipStatus_CorrectCommand" block="ChipStatus_CorrectCommand"
-        ChipStatus_CorrectCommand = 0x41,
-        //% blockId="ChipStatus_ErrorCommand" block="ChipStatus_ErrorCommand"
-        ChipStatus_ErrorCommand = 0x45,
-        //% blockId="ChipStatus_Busy" block="ChipStatus_Busy"
-        ChipStatus_Busy = 0x4E,
-        //% blockId="ChipStatus_Idle" block="ChipStatus_Idle"
-        ChipStatus_Idle = 0x4F
-    }
-
-    //% blockId=GetChipStatus block="GetChipStatus"
-    //% weight=99
-    //% blockGap=10
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
-    export function GetChipStatus(): number {
-        let AskState:number[] = [DATA_HEAD,0x00,0x01,0x21]; 
-        
-        IIC_Writes(AskState,4);
-
-        basic.pause(100);
-
-        let result = pins.i2cReadNumber(I2C_ADDR,NumberFormat.UInt8LE, false);
-        return result;
-        
-    }
-
-
-    //% blockId=Wait_XFS_Status block="Wait_XFS_Status|status %status"
-    //% weight=99
-    //% blockGap=10
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12  
-    export function Wait_XFS_Status(status:ChipStatus_Type): void {
-        let result = 0xff;
-        while(result !=  status)
-        {
-            result = GetChipStatus();
-            serial.writeNumber(result)
-            basic.pause(50);
-        }
-        
-    }
 
  
 }

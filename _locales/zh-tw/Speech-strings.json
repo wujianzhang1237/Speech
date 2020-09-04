@@ -1,5 +1,15 @@
 {
 
+  "Speech.Speech_Text|block": "语音播报文本|编码格式 %EncodingFormat |文本为 %speech_text",
+  
+  "Speech.ChipStatus_Type.ChipStatus_InitSuccessful|block": "初始化成功回传",
+  "Speech.ChipStatus_Type.ChipStatus_CorrectCommand|block": "收到正确的命令帧回传",
+  "Speech.ChipStatus_Type.ChipStatus_ErrorCommand|block": "收到不能识别命令帧回传",
+  "Speech.ChipStatus_Type.ChipStatus_Busy|block": "芯片忙碌状态回传",
+  "Speech.ChipStatus_Type.ChipStatus_Idle|block": "芯片空闲状态回传",  
+  "Speech.GetChipStatus|block": "获取芯片状态值",
+  "Speech.Wait_XFS_Status|block": "等待芯片为指定状态|状态为 %status",  
+
   "Speech.Style_Type.Style_Single|block": "一字一顿",
   "Speech.Style_Type.Style_Continue|block": "正常合成",
   "Speech.SetStyle|block": "合成风格设置|合成类型为 %style_type",
@@ -55,7 +65,6 @@
   "Speech.Rhythm_Type.Rhythm_Enable|block": "处理成韵律，*用于断词，#用于停顿",
   "Speech.SetRhythm|block": "是否使用韵律|策略为 %rhythm_type",
   
-  "Speech.SetRestoreDefault|block": "恢复默认的合成参数所有设置（除发音人设置、语种设置外）恢复为默认值",
+  "Speech.SetRestoreDefault|block": "恢复默认的合成参数所有设置（除发音人设置、语种设置外）恢复为默认值"
 
-  "Speech.GetChipStatus|block": "获取芯片状态值"
 }
