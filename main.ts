@@ -487,7 +487,7 @@ namespace Speech {
         //% blockId="ChipStatus_Busy" block="ChipStatus_Busy"
         ChipStatus_Busy = 0x4E,
         //% blockId="ChipStatus_Idle" block="ChipStatus_Idle"
-        ChipStatus_Busy = 0x4F
+        ChipStatus_Idle = 0x4F
     }
 
     //% blockId=GetChipStatus block="GetChipStatus"
